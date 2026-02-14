@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gameflix | Promoção</title>
+    <title>Gameflix | Store</title>
     <style>
         body { 
             background-color: #000; 
@@ -34,13 +34,13 @@
             margin-top: 5px;
         }
 
-        /* Grid de 3 colunas */
+        /* Grid de 3 colunas para celular */
         .catalog { 
             display: grid; 
             grid-template-columns: repeat(3, 1fr); 
             gap: 12px; 
             padding: 10px; 
-            max-width: 600px; /* Otimizado para celular */
+            max-width: 600px;
             margin: 0 auto;
         }
 
@@ -66,44 +66,43 @@
             object-fit: cover; 
         }
 
-        /* Selo de 90% OFF */
+        /* Selo de 90% OFF Verde */
         .badge {
             position: absolute;
-            top: 5px;
-            right: 5px;
+            top: 4px;
+            right: 4px;
             background-color: #28a745;
             color: #fff;
-            font-size: 0.6rem;
-            font-weight: bold;
-            padding: 3px 6px;
-            border-radius: 4px;
-            box-shadow: 0 0 10px rgba(40, 167, 69, 0.8);
-            z-index: 10;
+            font-size: 0.55rem;
+            font-weight: 900;
+            padding: 3px 5px;
+            border-radius: 3px;
+            box-shadow: 0 0 10px rgba(40, 167, 69, 0.7);
+            z-index: 5;
         }
 
-        /* Botão Adquirir com Neon Verde */
+        /* Botão Verde Neon */
         .btn-buy {
             margin-top: 8px;
             background-color: #28a745;
             color: white;
             text-decoration: none;
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             font-weight: 800;
-            padding: 10px 2px;
+            padding: 8px 0;
             border-radius: 4px;
             text-align: center;
             text-transform: uppercase;
-            /* Brilho Neon */
-            box-shadow: 0 4px 12px rgba(40, 167, 69, 0.5);
-            transition: 0.3s;
+            box-shadow: 0 4px 10px rgba(40, 167, 69, 0.4);
+            transition: 0.2s;
         }
 
         .btn-buy:active {
             transform: scale(0.9);
-            box-shadow: 0 0 20px rgba(40, 167, 69, 1);
+            box-shadow: 0 0 15px rgba(40, 167, 69, 0.8);
         }
 
-        footer { text-align: center; padding: 40px; color: #333; font-size: 0.7rem; }
+        footer { text-align: center; padding: 40px; color: #222; font-size: 0.7rem; }
     </style>
 </head>
 <body>
@@ -118,33 +117,27 @@
 <footer>&copy; 2026 Gameflix Store</footer>
 
 <script>
-    // Configurações
-    const MEU_WHATSAPP = "5500999999999"; // <--- COLOQUE SEU NÚMERO AQUI
-    
-    // Lista de Jogos e IDs Steam para buscar capas reais
+    // LISTA DOS 15 JOGOS SELECIONADOS
     const gamesList = [
-        { name: "GTA V", id: "271590" },
-        { name: "Red Dead 2", id: "1174180" },
+        { name: "Red Dead Redemption 2", id: "1174180" },
         { name: "Cyberpunk 2077", id: "1091500" },
-        { name: "Skyrim", id: "489830" },
-        { name: "Elden Ring", id: "1245620" },
+        { name: "Forza Horizon 6", id: "1551360" }, // Simulado c/ FH5
+        { name: "Battlefield 6", id: "1238810" },  // Simulado c/ BFV
         { name: "God of War", id: "1593500" },
-        { name: "The Witcher 3", id: "292030" },
-        { name: "Hogwarts Legacy", id: "1446780" },
-        { name: "Spider-Man 2", id: "1817070" },
-        { name: "Ghost of Tsushima", id: "2215430" },
-        { name: "Resident Evil 4", id: "2050650" },
-        { name: "Black Myth Wukong", id: "2358720" },
-        { name: "Mortal Kombat 1", id: "1971870" },
+        { name: "FIFA 26", id: "1811260" },        // Simulado c/ FC
         { name: "Forza Horizon 5", id: "1551360" },
-        { name: "The Last of Us", id: "1888500" },
-        { name: "Days Gone", id: "1259420" },
-        { name: "Tekken 8", id: "1773530" },
-        { name: "Lies of P", id: "1627720" }
-        // Adicione mais jogos seguindo esse padrão {name: "Nome", id: "ID_STEAM"}
+        { name: "Resident Evil 4 Remake", id: "2050650" },
+        { name: "The Witcher 3", id: "292030" },
+        { name: "Uncharted 4", id: "1659420" },
+        { name: "GTA 5", id: "271590" },
+        { name: "Spider-Man 2", id: "1817070" },
+        { name: "Horizon Forbidden West", id: "2420110" },
+        { name: "COD Modern Warfare II", id: "1938090" },
+        { name: "The Last of Us Part II", id: "1888500" }
     ];
 
     const grid = document.getElementById('game-grid');
+    const SEU_NUMERO = "5553981045078"; // <--- TROQUE PELO SEU WHATSAPP AQUI
 
     gamesList.forEach(game => {
         const urlImg = `https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/${game.id}/library_600x900.jpg`;
@@ -156,7 +149,7 @@
                 <div class="badge">90% OFF</div>
                 <img src="${urlImg}" alt="${game.name}" onerror="this.src='https://via.placeholder.com/600x900/111/fff?text=${game.name}'">
             </div>
-            <a href="https://wa.me/${MEU_WHATSAPP}?text=Olá! Quero o jogo ${game.name} em promoção." class="btn-buy">Adquirir</a>
+            <a href="https://wa.me/${SEU_NUMERO}?text=Olá! Tenho interesse no jogo ${game.name} do catálogo." class="btn-buy">Adquirir</a>
         `;
         grid.appendChild(card);
     });
