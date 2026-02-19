@@ -1,159 +1,143 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gameflix | Store</title>
-    <style>
-        body { 
-            background-color: #000; 
-            color: #fff; 
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; 
-            margin: 0; 
-            padding: 0; 
-        }
-        
-        header { 
-            text-align: center; 
-            padding: 30px 0; 
-        }
+<meta charset="UTF-8">
+<title>GameFlix Background</title>
 
-        h1 { 
-            color: #E50914; 
-            font-size: 2.5rem; 
-            margin: 0; 
-            letter-spacing: 2px; 
-            font-weight: bold;
-        }
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
 
-        .cat-title { 
-            color: #888; 
-            text-transform: uppercase; 
-            font-size: 0.8rem; 
-            letter-spacing: 1px;
-            margin-top: 5px;
-        }
+body{
+  background:#000;
+  color:#fff;
+  font-family:Arial, Helvetica, sans-serif;
+  min-height:200vh; /* permite scroll do site */
+}
 
-        /* Grid de 3 colunas para celular */
-        .catalog { 
-            display: grid; 
-            grid-template-columns: repeat(3, 1fr); 
-            gap: 12px; 
-            padding: 10px; 
-            max-width: 600px;
-            margin: 0 auto;
-        }
+/* ===== PARALLAX FUNDO ===== */
 
-        .game-card { 
-            display: flex; 
-            flex-direction: column; 
-            position: relative;
-        }
+.scene{
+  position:fixed;
+  inset:0;
+  perspective:1600px;
+  overflow:hidden;
+  z-index:-1;
+}
 
-        .img-box {
-            position: relative;
-            width: 100%;
-            aspect-ratio: 2/3;
-            background: #111;
-            border-radius: 6px;
-            overflow: hidden;
-            border: 1px solid #222;
-        }
+.grid{
+  position:absolute;
+  width:400%;
+  height:400%;
+  top:-150%;
+  left:-150%;
 
-        .img-box img { 
-            width: 100%; 
-            height: 100%; 
-            object-fit: cover; 
-        }
+  background-image:url("paralax.png");
+  background-size:420px auto;
+  background-repeat:repeat;
 
-        /* Selo de 90% OFF Verde */
-        .badge {
-            position: absolute;
-            top: 4px;
-            right: 4px;
-            background-color: #28a745;
-            color: #fff;
-            font-size: 0.55rem;
-            font-weight: 900;
-            padding: 3px 5px;
-            border-radius: 3px;
-            box-shadow: 0 0 10px rgba(40, 167, 69, 0.7);
-            z-index: 5;
-        }
+  transform: rotateX(20deg) rotateY(-15deg);
+  animation: moveGrid 80s linear infinite;
+  filter: brightness(.75);
+}
 
-        /* Botão Verde Neon */
-        .btn-buy {
-            margin-top: 8px;
-            background-color: #28a745;
-            color: white;
-            text-decoration: none;
-            font-size: 0.65rem;
-            font-weight: 800;
-            padding: 8px 0;
-            border-radius: 4px;
-            text-align: center;
-            text-transform: uppercase;
-            box-shadow: 0 4px 10px rgba(40, 167, 69, 0.4);
-            transition: 0.2s;
-        }
+.grid.back{
+  transform: rotateX(20deg) rotateY(-15deg) translateZ(-300px);
+  filter: blur(6px) brightness(.45);
+  animation-duration:120s;
+}
 
-        .btn-buy:active {
-            transform: scale(0.9);
-            box-shadow: 0 0 15px rgba(40, 167, 69, 0.8);
-        }
+.grid.mid{
+  transform: rotateX(20deg) rotateY(-15deg) translateZ(-120px);
+  filter: blur(2px) brightness(.65);
+  animation-duration:100s;
+}
 
-        footer { text-align: center; padding: 40px; color: #222; font-size: 0.7rem; }
-    </style>
+.grid.front{
+  transform: rotateX(20deg) rotateY(-15deg) translateZ(0);
+  animation-duration:80s;
+}
+
+@keyframes moveGrid{
+  from{
+    transform: rotateX(20deg) rotateY(-15deg) translate3d(0,0,0);
+  }
+  to{
+    transform: rotateX(20deg) rotateY(-15deg) translate3d(-1200px,-600px,0);
+  }
+}
+
+/* luz */
+.light{
+  position:absolute;
+  inset:0;
+  background:
+  radial-gradient(circle at 30% 40%, rgba(255,255,255,.08), transparent 40%),
+  radial-gradient(circle at 70% 60%, rgba(255,255,255,.05), transparent 45%);
+  animation: lightMove 25s linear infinite alternate;
+}
+
+@keyframes lightMove{
+  from{ transform: translateX(-6%); }
+  to{ transform: translateX(6%); }
+}
+
+/* overlay */
+.overlay{
+  position:absolute;
+  inset:0;
+  background:
+  radial-gradient(circle at center, transparent 30%, black 85%),
+  linear-gradient(to bottom, rgba(0,0,0,.6), rgba(0,0,0,.95));
+}
+
+/* ===== CONTEÚDO EXEMPLO ===== */
+
+.container{
+  position:relative;
+  z-index:2;
+  padding:80px;
+}
+
+.title{
+  font-size:48px;
+  font-weight:bold;
+  margin-bottom:20px;
+}
+
+.card{
+  width:260px;
+  height:150px;
+  background:#111;
+  border-radius:10px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-top:20px;
+  border:1px solid #333;
+}
+</style>
 </head>
+
 <body>
 
-<header>
-    <h1>GAMEFLIX</h1>
-    <div class="cat-title">Catálogo de Jogos</div>
-</header>
+<!-- FUNDO -->
+<div class="scene">
+  <div class="grid back"></div>
+  <div class="grid mid"></div>
+  <div class="grid front"></div>
+  <div class="light"></div>
+  <div class="overlay"></div>
+</div>
 
-<main class="catalog" id="game-grid"></main>
-
-<footer>&copy; 2026 Gameflix Store</footer>
-
-<script>
-    // LISTA DOS 15 JOGOS SELECIONADOS
-    const gamesList = [
-        { name: "Red Dead Redemption 2", id: "1174180" },
-        { name: "Cyberpunk 2077", id: "1091500" },
-        { name: "Forza Horizon 6", id: "1551360" }, // Simulado c/ FH5
-        { name: "Battlefield 6", id: "1238810" },  // Simulado c/ BFV
-        { name: "God of War", id: "1593500" },
-        { name: "FIFA 26", id: "1811260" },        // Simulado c/ FC
-        { name: "Forza Horizon 5", id: "1551360" },
-        { name: "Resident Evil 4 Remake", id: "2050650" },
-        { name: "The Witcher 3", id: "292030" },
-        { name: "Uncharted 4", id: "1659420" },
-        { name: "GTA 5", id: "271590" },
-        { name: "Spider-Man 2", id: "1817070" },
-        { name: "Horizon Forbidden West", id: "2420110" },
-        { name: "COD Modern Warfare II", id: "1938090" },
-        { name: "The Last of Us Part II", id: "1888500" }
-    ];
-
-    const grid = document.getElementById('game-grid');
-    const SEU_NUMERO = "5553981045078"; // <--- TROQUE PELO SEU WHATSAPP AQUI
-
-    gamesList.forEach(game => {
-        const urlImg = `https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/${game.id}/library_600x900.jpg`;
-        
-        const card = document.createElement('div');
-        card.className = 'game-card';
-        card.innerHTML = `
-            <div class="img-box">
-                <div class="badge">90% OFF</div>
-                <img src="${urlImg}" alt="${game.name}" onerror="this.src='https://via.placeholder.com/600x900/111/fff?text=${game.name}'">
-            </div>
-            <a href="https://wa.me/${SEU_NUMERO}?text=Olá! Tenho interesse no jogo ${game.name} do catálogo." class="btn-buy">Adquirir</a>
-        `;
-        grid.appendChild(card);
-    });
-</script>
+<!-- CONTEÚDO DO SITE (seu app fica aqui) -->
+<div class="container">
+  <div class="title">GAMEFLIX</div>
+  <div class="card">Seu app aqui</div>
+</div>
 
 </body>
 </html>
